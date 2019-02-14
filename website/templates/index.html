@@ -1,0 +1,807 @@
+{% extends "layout.html" %}
+{% block content %}
+<div style="margin-top: 20px; width: 100%;"class="container-fluid">
+  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="pills-comedy-tab" data-toggle="pill" href="#pills-comedy" role="tab" aria-controls="pills-comedy" aria-selected="true">Comedy</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-action-tab" data-toggle="pill" href="#pills-action" role="tab" aria-controls="pills-action" aria-selected="false">Action</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-drama-tab" data-toggle="pill" href="#pills-drama" role="tab" aria-controls="pills-drama" aria-selected="false">Drama</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-animation-tab" data-toggle="pill" href="#pills-animation" role="tab" aria-controls="pills-animation" aria-selected="false">Animation</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-documentary-tab" data-toggle="pill" href="#pills-documentary" role="tab" aria-controls="pills-documentary" aria-selected="false">Documentary</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-adventure-tab" data-toggle="pill" href="#pills-adventure" role="tab" aria-controls="pills-adventure" aria-selected="false">Adventure</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-crime-tab" data-toggle="pill" href="#pills-crime" role="tab" aria-controls="pills-crime" aria-selected="false">Crime</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-horror-tab" data-toggle="pill" href="#pills-horror" role="tab" aria-controls="pills-horror" aria-selected="false">Horror</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-mystery-tab" data-toggle="pill" href="#pills-mystery" role="tab" aria-controls="pills-mystery" aria-selected="false">Mystery</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-biography-tab" data-toggle="pill" href="#pills-biography" role="tab" aria-controls="pills-biography" aria-selected="false">Biography</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-family-tab" data-toggle="pill" href="#pills-family" role="tab" aria-controls="pills-family" aria-selected="false">Family</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-fantasy-tab" data-toggle="pill" href="#pills-fantasy" role="tab" aria-controls="pills-fantasy" aria-selected="false">Fantasy</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-western-tab" data-toggle="pill" href="#pills-western" role="tab" aria-controls="pills-western" aria-selected="false">Western</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-romance-tab" data-toggle="pill" href="#pills-romance" role="tab" aria-controls="pills-romance" aria-selected="false">Romance</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-short-tab" data-toggle="pill" href="#pills-short" role="tab" aria-controls="pills-short" aria-selected="false">Short</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-scifi-tab" data-toggle="pill" href="#pills-scifi" role="tab" aria-controls="pills-scifi" aria-selected="false">Sci-Fi</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-musical-tab" data-toggle="pill" href="#pills-musical" role="tab" aria-controls="pills-musical" aria-selected="false">Musical</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-thriller-tab" data-toggle="pill" href="#pills-thriller" role="tab" aria-controls="pills-thriller" aria-selected="false">Thriller</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-filmnoir-tab" data-toggle="pill" href="#pills-filmnoir" role="tab" aria-controls="pills-filmnoir" aria-selected="false">Film-Noir</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-comedy" role="tabpanel" aria-labelledby="pills-comedy-tab">
+      <div class="row">
+      {% for movie in movies %}
+        {% if movie['genres'][0] == 'Comedy' %}
+            <div class="col-sm-2">
+              <div class="card" style="width: 18rem;">
+                <img src="{{ movie['thumbnail'] }}" class="card-img-top" alt="{{ movie['title'] }} - Thumbnail">
+                <div class="card-body">
+                  <h5 class="card-title">{{ movie['title'] }} - ({{ movie['releaseYear'] }})</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ movie['duration'] }}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">IMDb Rating - {{ movie['imdbRating'] }}</h6>
+                  <p class="card-text">{{ movie['synopsis'][:100] }}...</p>
+                  {% if session.logged_in %}
+                  <div id="{{ movie['imdbId'] }}">
+                     <span class="1">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="2">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="3">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="4">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="5">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="pills-action" role="tabpanel" aria-labelledby="pills-action-tab">
+      <div class="row">
+      {% if movies.rewind() == None %}
+      {% endif %}
+      {% for movie in movies %}
+        {% if movie['genres'][0] == 'Action' %}
+            <div class="col-sm-2">
+              <div class="card" style="width: 18rem;">
+                <img src="{{ movie['thumbnail'] }}" class="card-img-top" alt="{{ movie['title'] }} - Thumbnail">
+                <div class="card-body">
+                  <h5 class="card-title">{{ movie['title'] }} - ({{ movie['releaseYear'] }})</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ movie['duration'] }}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">IMDb Rating - {{ movie['imdbRating'] }}</h6>
+                  <p class="card-text">{{ movie['synopsis'][:100] }}...</p>
+                  {% if session.logged_in %}
+                  <div id="{{ movie['imdbId'] }}">
+                     <span class="1">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="2">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="3">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="4">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="5">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="pills-drama" role="tabpanel" aria-labelledby="pills-drama-tab">
+      <div class="row">
+      {% if movies.rewind() == None %}
+      {% endif %}
+      {% for movie in movies %}
+        {% if movie['genres'][0] == 'Drama' %}
+            <div class="col-sm-2">
+              <div class="card" style="width: 18rem;">
+                <img src="{{ movie['thumbnail'] }}" class="card-img-top" alt="{{ movie['title'] }} - Thumbnail">
+                <div class="card-body">
+                  <h5 class="card-title">{{ movie['title'] }} - ({{ movie['releaseYear'] }})</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ movie['duration'] }}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">IMDb Rating - {{ movie['imdbRating'] }}</h6>
+                  <p class="card-text">{{ movie['synopsis'][:100] }}...</p>
+                  {% if session.logged_in %}
+                  <div id="{{ movie['imdbId'] }}">
+                     <span class="1">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="2">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="3">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="4">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="5">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="pills-animation" role="tabpanel" aria-labelledby="pills-animation-tab">
+      <div class="row">
+      {% if movies.rewind() == None %}
+      {% endif %}
+      {% for movie in movies %}
+        {% if movie['genres'][0] == 'Animation' %}
+            <div class="col-sm-2">
+              <div class="card" style="width: 18rem;">
+                <img src="{{ movie['thumbnail'] }}" class="card-img-top" alt="{{ movie['title'] }} - Thumbnail">
+                <div class="card-body">
+                  <h5 class="card-title">{{ movie['title'] }} - ({{ movie['releaseYear'] }})</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ movie['duration'] }}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">IMDb Rating - {{ movie['imdbRating'] }}</h6>
+                  <p class="card-text">{{ movie['synopsis'][:100] }}...</p>
+                  {% if session.logged_in %}
+                  <div id="{{ movie['imdbId'] }}">
+                     <span class="1">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="2">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="3">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="4">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="5">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+
+
+    <div class="tab-pane fade" id="pills-documentary" role="tabpanel" aria-labelledby="pills-documentary-tab">
+      <div class="row">
+      {% if movies.rewind() == None %}
+      {% endif %}
+      {% for movie in movies %}
+        {% if movie['genres'][0] == 'Documentary' %}
+            <div class="col-sm-2">
+              <div class="card" style="width: 18rem;">
+                <img src="{{ movie['thumbnail'] }}" class="card-img-top" alt="{{ movie['title'] }} - Thumbnail">
+                <div class="card-body">
+                  <h5 class="card-title">{{ movie['title'] }} - ({{ movie['releaseYear'] }})</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ movie['duration'] }}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">IMDb Rating - {{ movie['imdbRating'] }}</h6>
+                  <p class="card-text">{{ movie['synopsis'][:100] }}...</p>
+                  {% if session.logged_in %}
+                  <div id="{{ movie['imdbId'] }}">
+                     <span class="1">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="2">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="3">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="4">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="5">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+
+        <div class="tab-pane fade" id="pills-adventure" role="tabpanel" aria-labelledby="pills-adventure-tab">
+      <div class="row">
+      {% if movies.rewind() == None %}
+      {% endif %}
+      {% for movie in movies %}
+        {% if movie['genres'][0] == 'Adventure' %}
+            <div class="col-sm-2">
+              <div class="card" style="width: 18rem;">
+                <img src="{{ movie['thumbnail'] }}" class="card-img-top" alt="{{ movie['title'] }} - Thumbnail">
+                <div class="card-body">
+                  <h5 class="card-title">{{ movie['title'] }} - ({{ movie['releaseYear'] }})</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ movie['duration'] }}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">IMDb Rating - {{ movie['imdbRating'] }}</h6>
+                  <p class="card-text">{{ movie['synopsis'][:100] }}...</p>
+                  {% if session.logged_in %}
+                  <div id="{{ movie['imdbId'] }}">
+                     <span class="1">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="2">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="3">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="4">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="5">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+
+
+    <div class="tab-pane fade" id="pills-crime" role="tabpanel" aria-labelledby="pills-crime-tab">
+      <div class="row">
+      {% if movies.rewind() == None %}
+      {% endif %}
+      {% for movie in movies %}
+        {% if movie['genres'][0] == 'Crime' %}
+            <div class="col-sm-2">
+              <div class="card" style="width: 18rem;">
+                <img src="{{ movie['thumbnail'] }}" class="card-img-top" alt="{{ movie['title'] }} - Thumbnail">
+                <div class="card-body">
+                  <h5 class="card-title">{{ movie['title'] }} - ({{ movie['releaseYear'] }})</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ movie['duration'] }}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">IMDb Rating - {{ movie['imdbRating'] }}</h6>
+                  <p class="card-text">{{ movie['synopsis'][:100] }}...</p>
+                  {% if session.logged_in %}
+                  <div id="{{ movie['imdbId'] }}">
+                     <span class="1">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="2">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="3">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="4">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="5">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="pills-horror" role="tabpanel" aria-labelledby="pills-horror-tab">
+      <div class="row">
+      {% if movies.rewind() == None %}
+      {% endif %}
+      {% for movie in movies %}
+        {% if movie['genres'][0] == 'Horror' %}
+            <div class="col-sm-2">
+              <div class="card" style="width: 18rem;">
+                <img src="{{ movie['thumbnail'] }}" class="card-img-top" alt="{{ movie['title'] }} - Thumbnail">
+                <div class="card-body">
+                  <h5 class="card-title">{{ movie['title'] }} - ({{ movie['releaseYear'] }})</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ movie['duration'] }}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">IMDb Rating - {{ movie['imdbRating'] }}</h6>
+                  <p class="card-text">{{ movie['synopsis'][:100] }}...</p>
+                  {% if session.logged_in %}
+                  <div id="{{ movie['imdbId'] }}">
+                     <span class="1">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="2">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="3">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="4">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="5">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="pills-mystery" role="tabpanel" aria-labelledby="pills-mystery-tab">
+      <div class="row">
+      {% if movies.rewind() == None %}
+      {% endif %}
+      {% for movie in movies %}
+        {% if movie['genres'][0] == 'Mystery' %}
+            <div class="col-sm-2">
+              <div class="card" style="width: 18rem;">
+                <img src="{{ movie['thumbnail'] }}" class="card-img-top" alt="{{ movie['title'] }} - Thumbnail">
+                <div class="card-body">
+                  <h5 class="card-title">{{ movie['title'] }} - ({{ movie['releaseYear'] }})</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ movie['duration'] }}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">IMDb Rating - {{ movie['imdbRating'] }}</h6>
+                  <p class="card-text">{{ movie['synopsis'][:100] }}...</p>
+                  {% if session.logged_in %}
+                  <div id="{{ movie['imdbId'] }}">
+                     <span class="1">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="2">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="3">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="4">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="5">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="pills-biography" role="tabpanel" aria-labelledby="pills-biography-tab">
+      <div class="row">
+      {% if movies.rewind() == None %}
+      {% endif %}
+      {% for movie in movies %}
+        {% if movie['genres'][0] == 'Biography' %}
+            <div class="col-sm-2">
+              <div class="card" style="width: 18rem;">
+                <img src="{{ movie['thumbnail'] }}" class="card-img-top" alt="{{ movie['title'] }} - Thumbnail">
+                <div class="card-body">
+                  <h5 class="card-title">{{ movie['title'] }} - ({{ movie['releaseYear'] }})</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ movie['duration'] }}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">IMDb Rating - {{ movie['imdbRating'] }}</h6>
+                  <p class="card-text">{{ movie['synopsis'][:100] }}...</p>
+                  {% if session.logged_in %}
+                  <div id="{{ movie['imdbId'] }}">
+                     <span class="1">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="2">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="3">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="4">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="5">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="pills-family" role="tabpanel" aria-labelledby="pills-family-tab">
+      <div class="row">
+      {% if movies.rewind() == None %}
+      {% endif %}
+      {% for movie in movies %}
+        {% if movie['genres'][0] == 'Family' %}
+            <div class="col-sm-2">
+              <div class="card" style="width: 18rem;">
+                <img src="{{ movie['thumbnail'] }}" class="card-img-top" alt="{{ movie['title'] }} - Thumbnail">
+                <div class="card-body">
+                  <h5 class="card-title">{{ movie['title'] }} - ({{ movie['releaseYear'] }})</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ movie['duration'] }}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">IMDb Rating - {{ movie['imdbRating'] }}</h6>
+                  <p class="card-text">{{ movie['synopsis'][:100] }}...</p>
+                  {% if session.logged_in %}
+                  <div id="{{ movie['imdbId'] }}">
+                     <span class="1">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="2">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="3">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="4">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="5">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="pills-fantasy" role="tabpanel" aria-labelledby="pills-fantasy-tab">
+      <div class="row">
+      {% if movies.rewind() == None %}
+      {% endif %}
+      {% for movie in movies %}
+        {% if movie['genres'][0] == 'Fantasy' %}
+            <div class="col-sm-2">
+              <div class="card" style="width: 18rem;">
+                <img src="{{ movie['thumbnail'] }}" class="card-img-top" alt="{{ movie['title'] }} - Thumbnail">
+                <div class="card-body">
+                  <h5 class="card-title">{{ movie['title'] }} - ({{ movie['releaseYear'] }})</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ movie['duration'] }}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">IMDb Rating - {{ movie['imdbRating'] }}</h6>
+                  <p class="card-text">{{ movie['synopsis'][:100] }}...</p>
+                  {% if session.logged_in %}
+                  <div id="{{ movie['imdbId'] }}">
+                     <span class="1">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="2">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="3">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="4">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="5">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="pills-western" role="tabpanel" aria-labelledby="pills-western-tab">
+      <div class="row">
+      {% if movies.rewind() == None %}
+      {% endif %}
+      {% for movie in movies %}
+        {% if movie['genres'][0] == 'Western' %}
+            <div class="col-sm-2">
+              <div class="card" style="width: 18rem;">
+                <img src="{{ movie['thumbnail'] }}" class="card-img-top" alt="{{ movie['title'] }} - Thumbnail">
+                <div class="card-body">
+                  <h5 class="card-title">{{ movie['title'] }} - ({{ movie['releaseYear'] }})</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ movie['duration'] }}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">IMDb Rating - {{ movie['imdbRating'] }}</h6>
+                  <p class="card-text">{{ movie['synopsis'][:100] }}...</p>
+                  {% if session.logged_in %}
+                  <div id="{{ movie['imdbId'] }}">
+                     <span class="1">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="2">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="3">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="4">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="5">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+
+
+    <div class="tab-pane fade" id="pills-romance" role="tabpanel" aria-labelledby="pills-romance-tab">
+      <div class="row">
+      {% if movies.rewind() == None %}
+      {% endif %}
+      {% for movie in movies %}
+        {% if movie['genres'][0] == 'Romance' %}
+            <div class="col-sm-2">
+              <div class="card" style="width: 18rem;">
+                <img src="{{ movie['thumbnail'] }}" class="card-img-top" alt="{{ movie['title'] }} - Thumbnail">
+                <div class="card-body">
+                  <h5 class="card-title">{{ movie['title'] }} - ({{ movie['releaseYear'] }})</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ movie['duration'] }}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">IMDb Rating - {{ movie['imdbRating'] }}</h6>
+                  <p class="card-text">{{ movie['synopsis'][:100] }}...</p>
+                  {% if session.logged_in %}
+                  <div id="{{ movie['imdbId'] }}">
+                     <span class="1">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="2">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="3">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="4">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="5">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="pills-scifi" role="tabpanel" aria-labelledby="pills-scifi-tab">
+      <div class="row">
+      {% if movies.rewind() == None %}
+      {% endif %}
+      {% for movie in movies %}
+        {% if movie['genres'][0] == 'Sci-Fi' %}
+            <div class="col-sm-2">
+              <div class="card" style="width: 18rem;">
+                <img src="{{ movie['thumbnail'] }}" class="card-img-top" alt="{{ movie['title'] }} - Thumbnail">
+                <div class="card-body">
+                  <h5 class="card-title">{{ movie['title'] }} - ({{ movie['releaseYear'] }})</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ movie['duration'] }}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">IMDb Rating - {{ movie['imdbRating'] }}</h6>
+                  <p class="card-text">{{ movie['synopsis'][:100] }}...</p>
+                  {% if session.logged_in %}
+                  <div id="{{ movie['imdbId'] }}">
+                     <span class="1">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="2">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="3">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="4">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="5">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="pills-musical" role="tabpanel" aria-labelledby="pills-musical-tab">
+      <div class="row">
+      {% if movies.rewind() == None %}
+      {% endif %}
+      {% for movie in movies %}
+        {% if movie['genres'][0] == 'Musical' %}
+            <div class="col-sm-2">
+              <div class="card" style="width: 18rem;">
+                <img src="{{ movie['thumbnail'] }}" class="card-img-top" alt="{{ movie['title'] }} - Thumbnail">
+                <div class="card-body">
+                  <h5 class="card-title">{{ movie['title'] }} - ({{ movie['releaseYear'] }})</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ movie['duration'] }}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">IMDb Rating - {{ movie['imdbRating'] }}</h6>
+                  <p class="card-text">{{ movie['synopsis'][:100] }}...</p>
+                  {% if session.logged_in %}
+                  <div id="{{ movie['imdbId'] }}">
+                     <span class="1">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="2">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="3">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="4">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="5">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+
+    
+    <div class="tab-pane fade" id="pills-thriller" role="tabpanel" aria-labelledby="pills-thriller-tab">
+      <div class="row">
+      {% if movies.rewind() == None %}
+      {% endif %}
+      {% for movie in movies %}
+        {% if movie['genres'][0] == 'Thriller' %}
+            <div class="col-sm-2">
+              <div class="card" style="width: 18rem;">
+                <img src="{{ movie['thumbnail'] }}" class="card-img-top" alt="{{ movie['title'] }} - Thumbnail">
+                <div class="card-body">
+                  <h5 class="card-title">{{ movie['title'] }} - ({{ movie['releaseYear'] }})</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ movie['duration'] }}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">IMDb Rating - {{ movie['imdbRating'] }}</h6>
+                  <p class="card-text">{{ movie['synopsis'][:100] }}...</p>
+                  {% if session.logged_in %}
+                  <div id="{{ movie['imdbId'] }}">
+                     <span class="1">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="2">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="3">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="4">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="5">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+  
+
+    <div class="tab-pane fade" id="pills-filmnoir" role="tabpanel" aria-labelledby="pills-filmnoir-tab">
+      <div class="row">
+      {% if movies.rewind() == None %}
+      {% endif %}
+      {% for movie in movies %}
+        {% if movie['genres'][0] == 'Film-Noir' %}
+            <div class="col-sm-2">
+              <div class="card" style="width: 18rem;">
+                <img src="{{ movie['thumbnail'] }}" class="card-img-top" alt="{{ movie['title'] }} - Thumbnail">
+                <div class="card-body">
+                  <h5 class="card-title">{{ movie['title'] }} - ({{ movie['releaseYear'] }})</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">{{ movie['duration'] }}</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">IMDb Rating - {{ movie['imdbRating'] }}</h6>
+                  <p class="card-text">{{ movie['synopsis'][:100] }}...</p>
+                  {% if session.logged_in %}
+                  <div id="{{ movie['imdbId'] }}">
+                     <span class="1">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="2">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="3">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="4">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                      <span class="5">
+                          <i class="fa fa-star is-size-3" aria-hidden="true"></i>
+                      </span>
+                  </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+        {% endif %}
+      {% endfor %}
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
