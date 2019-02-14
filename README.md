@@ -4,10 +4,9 @@
 
 The webapp homepage consists of a number of movies from different genres and release years. The user has to first register
 and login into the application. The homepage is then updated to provide option to rate each movie on a scale of 1-5. The user
-is required to rate **atleast 10** movies across different genres and click on the submit button. After pressing the submit button,
-the 3 algorithms take data and calculate predictions *(note that this will take some time since the existing database is large
-to generate better predictions)*. Once the processing is done, the user is shown recommendations sorted according to different
-algorithms.
+is required to rate **atleast 10** movies across different genres and click on the submit button. After pressing the submit button, the 3 algorithms take data and calculate predictions *(note that this will take some time since the existing database is large to generate better predictions)*. Once the processing is done, the user is shown recommendations sorted according to different algorithms.
+
+![homepage_with_login](https://github.com/himanshuladia/movie-recommender/blob/master/screenshots/homepage_with_login.png)
 
 ## Approach Followed
 
@@ -68,6 +67,11 @@ pure numpy code for vectorized and fast results.
 
 * **matrixfactorization.py** - Provides matrixfactorization_predict function to the main app.py module
 
+### Data
+
+* **ml-latest-small** - MovieLens development dataset, small in size
+* **database.csv** - User-item ratings matrix made from the movielens dataset
+
 ## Dependencies Used
 
 1. Flask - for backend
@@ -80,4 +84,4 @@ pure numpy code for vectorized and fast results.
 
 ## Deployment
 
-The application is deployed using digital ocean's droplet and is available to use on the ip address [68.183.81.208](http://68.183.81.208)
+The application is deployed using digital ocean's droplet and is available to use on the ip address [68.183.81.208](http://68.183.81.208), as long as I can manage the free credits :)
