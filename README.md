@@ -16,9 +16,7 @@ Used collaborative filtering methods to predict movie ratings for a user -
 
 1. In general itemitem collaborative filtering worked better than useruser collaborative filtering, irrespective of the similarity
 function used. This is possibly because itemitem collaborative filtering is more resistant towards user bias. Comparing the
-similarity functions, it was observed the plain, cosine similarity tends to work better than correlation for sparse matrices.
- Tried using centered cosine, but it fails when users rate all the movies same, so dropped it. The value of nearest neighbor was
- chosen such that the mse loss is minimized.
+similarity functions, it was observed the plain, cosine similarity tends to work better than pearson correlation, for sparse matrices. Tried using centered cosine, but it fails when users rate all the movies same, so dropped it. The value of nearest neighbor was chosen such that the mse loss is minimized.
  
 2. Matrix factorization outperforms both of the above methods in terms of mean squared error loss. Using appropriate random
 initialization, a single iteration of stochastic gradient descent was able to give the best results. With some trial and error
